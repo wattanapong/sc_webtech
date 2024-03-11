@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>Login Form</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container login-container">
+    <h2 class="text-center mb-4">Login</h2>
+    <form method="post" id="loginForm">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter your username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password" required>
+        </div>
+
+        <input type="submit" class="btn btn-primary btn-block" onclick="return login()" value="Login">
+
+        <div class="mb-3 text-danger" id="msg"></div>
+
+</body>
+<script>
+    const msg = document.getElementById('msg')
+    async function login(){
+        event.preventDefault();
+        
+        const formElement = document.getElementById('loginForm')
+        const data = new URLSearchParams(new FormData(formElement));
+
+        const response = await fetch('/verify', {
+            method: 'post',
+            body: data,
+        })
+        if (response.ok) {
+            obj = await response.json();
+            msg.innerHTML = obj['msg']
+        }
+        msg.innerHTML = "Error"
+        return false;
+    }
+</script>
+</html>
