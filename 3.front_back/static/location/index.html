@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location list</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h2 class="mb-4">iot data</h2>
+
+        <div><a href="/location/index.html">Main</a></div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>location id</th>
+                    <th>location name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+
+        <a type="button" class="btn btn-primary" href="/location/insert.html">Add</a>
+    </div>
+
+    <script>
+
+        async function getdata() {
+            const response = await fetch("/location/list");
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            data = await response.json();
+
+            tableData = '';
+            for (i = 0; i < data.length; i++) {
+                tableData += '<tr>';
+                tableData += '<td>' + data[i].location_id + '</td>';
+                tableData += '<td>' + data[i].location_name + '</td>';
+                tableData += '<td>';
+                    tableData +=   '<a href="/location/update.html?id='+data[i].location_id+'"><i class="fa-solid fa-pen-to-square"></i></a>';
+                        tableData += '<a href="/location/delete/' + data[i].location_id + '"';
+                        tableData += ' onclick="return confirm(\'Enter to delete\')"><i class="fa-solid fa-trash-can"></i></a> </td>';
+                tableData += '</tr>';
+            }
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = tableData
+        }
+
+        getdata();
+
+    </script>
+
+</body>
+
+</html>

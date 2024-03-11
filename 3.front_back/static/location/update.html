@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Location</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div><a href="/location/index.html">Main</a></div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center"><i class="fas fa-map-marker-alt"></i> Add New Location</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="/location/insert" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="location_id" id="location_id">
+                                <label for="location_name"> Location Name</label>
+                                <input type="text" class="form-control" id="location_name" name="location_name"
+                                    placeholder="Enter location name">
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-save"></i>
+                            </button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+
+    async function getdata() {
+        const queryString = window.location.search
+        const urlParams = new URLSearchParams(queryString)
+        let id = urlParams.get('id')
+        const response = await fetch('/location/json/' + id)
+        if (response.ok) {
+            data = await response.json();
+            if (data.length > 0) {
+                console.log(data)
+                document.getElementById('location_id').value = data[0].location_id;
+                document.getElementById('location_name').value = data[0].location_name;
+            }
+        }
+    }
+
+    getdata()
+</script>
+
+</html>
