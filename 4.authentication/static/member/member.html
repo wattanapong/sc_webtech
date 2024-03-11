@@ -1,38 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miss me??</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
+    <script>
+        function getCookie(c_name) {
+            if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }
+                    return unescape(document.cookie.substring(c_start, c_end));
+                }
+            }
+            return "";
+        }
+        let username = getCookie('username')
+        
+        if (username == ""){
+            alert('Please login')
+            window.location = '/member'
+        }
+            
+    </script>
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row bg-primary bg-gradient p-4">
-            <h1 class=" text-light text-center">คิดถึงฉันไหม
-            {{#username}}
-                {{username}}
-                    <a href="/member/logout" class="text-light text-end">Logout</a>
-            {{/username}}
+            <h1 class=" text-light text-center">Welcome <b id="name"></b> <a href="/logout"
+                    class="text-light text-end">Logout</a>
             </h1>
         </div>
         <div class="row">
-    <input type="checkbox" id="navbar-toggle-cbox">
-    <div class="navbar-header">
-      <label for="navbar-toggle-cbox" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </label>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-        </ul>
-      </div>
-            <div class="col-2 bg-light p-3"  style="height: 83vh;">
+            <input type="checkbox" id="navbar-toggle-cbox">
+            <div class="navbar-header">
+                <label for="navbar-toggle-cbox" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </label>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </div>
+            <div class="col-2 bg-light p-3" style="height: 83vh;">
                 <ul class="p-0 mobile-hide">
                     <h3 class="text-center text-primary bg-white p-0">Menu</h3>
                     <li>Home</li>
@@ -48,4 +71,9 @@
     </div>
 
 </body>
+<script>
+    document.getElementById('name').innerHTML = username
+
+</script>
+
 </html>

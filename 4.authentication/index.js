@@ -50,7 +50,7 @@ app.get('/logout', (req, res) => {
     if (username)
         res.clearCookie('username')
 
-        res.sendFile('/member/login.html')
+        res.redirect('/member/login.html')
 });
 
 app.post('/verify', (req, res) => {

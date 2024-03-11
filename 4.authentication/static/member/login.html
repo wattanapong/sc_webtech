@@ -51,6 +51,9 @@
         if (response.ok) {
             obj = await response.json();
             msg.innerHTML = obj['msg']
+            if (obj['msg'] == 'Welcome'){
+                window.location = '/member'
+            }
         }
         msg.innerHTML = "Error"
         return false;
