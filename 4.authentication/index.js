@@ -73,6 +73,10 @@ app.post('/verify', (req, res) => {
     })
 })
 
+app.get('*', (req, res) => {
+    res.redirect('/login')
+})
+
 // Start the Express server
 port = 3000
 app.listen(port, () => {
