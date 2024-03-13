@@ -6,22 +6,6 @@
 npm install next@latest react@latest react-dom@latest
 ```
 
-install tailwindcss and its dependencies
-```
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-```
-
-change content detail in tailwind.config.js
-```
-content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}"
-  ],
-```
-
-
 # setting prisma
 
 ```
@@ -58,11 +42,6 @@ cd src
 mkdir app
 ```
 
-Test prisma studio
-```
-npx prisma studio
-```
-
 create app directory
 write this code on app/pages.tsx
 ```
@@ -76,7 +55,10 @@ run next.js as dev to auto generate layout.tsx and ready to run
 npm run dev
 ```
 
-npm install @prisma/client
-npx prisma generate
-
 - Open [http://localhost:3000](http://localhost:3000)
+
+
+Test prisma studio
+```
+npx prisma studio
+```

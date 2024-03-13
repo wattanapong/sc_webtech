@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "prisma-next-crud-generator": "^1.3.0"
+  }
+}
