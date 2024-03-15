@@ -1,0 +1,5 @@
+responseBody = pm.response.json()
+
+pm.test("verification from auth.csv", function () {
+     pm.expect(responseBody.msg).to.equal('Welcome');
+});

@@ -73,6 +73,20 @@ app.post('/verify', (req, res) => {
     })
 })
 
+app.post('/add', (req, res) => {
+    const { username, password } = req.body
+    console.log(username, password)
+    const sql = 'INSERT INTO member (username, password) VALUES (?, ?)';
+    pool.query(sql, [username, md5(password)], (err, results) => {
+        if (err) {
+            console.log(err)
+            res.json({'msg': 'failed'})
+        } else {
+            res.json({'msg': 'done'});
+        }
+    })
+})
+
 app.get('*', (req, res) => {
     res.redirect('/login')
 })

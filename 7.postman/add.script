@@ -1,0 +1,9 @@
+// Parse the response body as JSON
+var responseBody = pm.response.json();
+
+// Check if the response body contains the newly created object
+pm.test("Add new user in member table", function () {
+    pm.expect(responseBody).to.have.property("msg");
+    // pm.expect(responseBody.msg).to.be.a("string");
+    pm.expect(responseBody.msg).to.equal('done');
+});
